@@ -2,7 +2,7 @@
  * 🔐 SMS Authentication Module (Twilio)
  */
 
-const API_URL = 'http://localhost:3001/api';
+const API_URL = 'https://axiologically-unorbed-andrea.ngrok-free.dev/api';
 
 let currentPhoneNumber = '';
 
