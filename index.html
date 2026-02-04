@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#0066CC">
+    <meta name="description" content="Экологичный сервис для мастеров и клиентов">
+    <title>Sheber.kz - Регистрация</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="app">
+        <!-- Декоративный фон -->
+        <div class="bg-decoration">
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+            <div class="leaf leaf-1">🌿</div>
+            <div class="leaf leaf-2">🍃</div>
+            <div class="leaf leaf-3">🌱</div>
+        </div>
+
+        <!-- Экран 1: Ввод телефона -->
+        <div class="screen active" id="screen-phone">
+            <div class="screen-content">
+                <div class="logo">
+                    <div class="logo-icon">🌿</div>
+                    <h1 class="logo-text">Sheber.kz</h1>
+                </div>
+
+                <div class="card glass">
+                    <h2 class="card-title">Добро пожаловать!</h2>
+                    <p class="card-subtitle">Введите номер телефона для регистрации</p>
+
+                    <div class="input-group">
+                        <label class="input-label">Номер телефона</label>
+                        <div class="phone-input-wrapper">
+                            <span class="phone-prefix">+7</span>
+                            <input type="tel" id="phone-input" class="input phone-input" placeholder="999 123 45 67"
+                                maxlength="13" autocomplete="tel">
+                        </div>
+                        <span class="input-hint">Мы отправим SMS с кодом подтверждения</span>
+                    </div>
+
+                    <div id="recaptcha-container"></div>
+
+                    <button class="btn btn-primary" id="btn-send-code" disabled>
+                        <span class="btn-text">Получить код</span>
+                        <span class="btn-loader"></span>
+                    </button>
+                </div>
+
+                <p class="terms">
+                    Продолжая, вы соглашаетесь с
+                    <a href="#">условиями использования</a>
+                </p>
+            </div>
+        </div>
+
+        <!-- Экран 2: Ввод SMS кода -->
+        <div class="screen" id="screen-code">
+            <div class="screen-content">
+                <button class="back-btn" id="btn-back-phone">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </button>
+
+                <div class="card glass">
+                    <div class="card-icon">🔐</div>
+                    <h2 class="card-title">Введите код</h2>
+                    <p class="card-subtitle">Код отправлен на номер <span id="display-phone"></span></p>
+
+                    <div class="code-inputs" id="code-inputs">
+                        <input type="text" maxlength="1" class="code-input" data-index="0" inputmode="numeric">
+                        <input type="text" maxlength="1" class="code-input" data-index="1" inputmode="numeric">
+                        <input type="text" maxlength="1" class="code-input" data-index="2" inputmode="numeric">
+                        <input type="text" maxlength="1" class="code-input" data-index="3" inputmode="numeric">
+                        <input type="text" maxlength="1" class="code-input" data-index="4" inputmode="numeric">
+                        <input type="text" maxlength="1" class="code-input" data-index="5" inputmode="numeric">
+                    </div>
+
+                    <div class="resend-timer">
+                        <span id="resend-text">Отправить повторно через </span>
+                        <span id="resend-timer">60</span>с
+                    </div>
+                    <button class="btn-link" id="btn-resend" style="display: none;">Отправить код повторно</button>
+
+                    <button class="btn btn-primary" id="btn-verify-code" disabled>
+                        <span class="btn-text">Подтвердить</span>
+                        <span class="btn-loader"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Экран 3: Выбор роли -->
+        <div class="screen" id="screen-role">
+            <div class="screen-content">
+                <div class="card glass">
+                    <div class="card-icon">👤</div>
+                    <h2 class="card-title">Кто вы?</h2>
+                    <p class="card-subtitle">Выберите вашу роль в сервисе</p>
+
+                    <div class="role-cards">
+                        <button class="role-card" data-role="master">
+                            <div class="role-icon">🛠️</div>
+                            <h3 class="role-title">Мастер</h3>
+                            <p class="role-desc">Предлагаю свои услуги</p>
+                        </button>
+
+                        <button class="role-card" data-role="client">
+                            <div class="role-icon">🙋</div>
+                            <h3 class="role-title">Клиент</h3>
+                            <p class="role-desc">Ищу специалиста</p>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Экран 4: Форма профиля -->
+        <div class="screen" id="screen-profile">
+            <div class="screen-content">
+                <button class="back-btn" id="btn-back-role">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </button>
+
+                <div class="card glass">
+                    <div class="card-icon" id="profile-icon">📝</div>
+                    <h2 class="card-title">Создание профиля</h2>
+                    <p class="card-subtitle" id="profile-subtitle">Заполните информацию о себе</p>
+
+                    <form id="profile-form">
+                        <div class="input-group">
+                            <label class="input-label">Имя *</label>
+                            <input type="text" id="input-firstname" class="input" placeholder="Введите имя" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label class="input-label">Фамилия *</label>
+                            <input type="text" id="input-lastname" class="input" placeholder="Введите фамилию" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label class="input-label">Email</label>
+                            <input type="email" id="input-email" class="input" placeholder="example@mail.com">
+                        </div>
+
+                        <!-- Дополнительные поля для мастера -->
+                        <div id="master-fields" style="display: none;">
+                            <div class="input-group">
+                                <label class="input-label">Специализация *</label>
+                                <select id="input-specialization" class="input select">
+                                    <option value="">Выберите специализацию</option>
+                                    <option value="plumber">Сантехник</option>
+                                    <option value="electrician">Электрик</option>
+                                    <option value="carpenter">Плотник</option>
+                                    <option value="painter">Маляр</option>
+                                    <option value="cleaner">Клининг</option>
+                                    <option value="handyman">Мастер на все руки</option>
+                                    <option value="other">Другое</option>
+                                </select>
+                            </div>
+
+                            <div class="input-group">
+                                <label class="input-label">Опыт работы</label>
+                                <select id="input-experience" class="input select">
+                                    <option value="">Выберите опыт</option>
+                                    <option value="0-1">Менее 1 года</option>
+                                    <option value="1-3">1-3 года</option>
+                                    <option value="3-5">3-5 лет</option>
+                                    <option value="5+">Более 5 лет</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" id="btn-create-profile">
+                            <span class="btn-text">Создать аккаунт</span>
+                            <span class="btn-loader"></span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Экран 5: Успешная регистрация -->
+        <div class="screen" id="screen-success">
+            <div class="screen-content">
+                <div class="card glass success-card">
+                    <div class="success-animation">
+                        <div class="success-circle">
+                            <svg class="checkmark" viewBox="0 0 52 52">
+                                <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none" />
+                                <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+                            </svg>
+                        </div>
+                    </div>
+                    <h2 class="card-title">Добро пожаловать!</h2>
+                    <p class="card-subtitle" id="success-message">Ваш аккаунт успешно создан</p>
+
+                    <div class="user-info">
+                        <div class="user-avatar" id="user-avatar">👤</div>
+                        <div class="user-details">
+                            <span class="user-name" id="user-name"></span>
+                            <span class="user-role" id="user-role"></span>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary" id="btn-continue">
+                        <span class="btn-text">Продолжить</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Toast уведомления -->
+        <div class="toast-container" id="toast-container"></div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
+    <script src="firebase-config.js"></script>
+    <script src="auth.js"></script>
+    <script src="database.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
