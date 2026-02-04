@@ -2,7 +2,7 @@
  * 🔐 SMS Authentication Module (Twilio)
  */
 
-const API_URL = 'https://axiologically-unorbed-andrea.ngrok-free.dev/api';
+const API_URL = '  https://axiologically-unorbed-andrea.ngrok-free.dev';
 
 let currentPhoneNumber = '';
 
@@ -99,3 +99,4 @@ async function resendCode() {
 function isFirebaseConfigured() {
     return true; // Используем Twilio
 }
+
